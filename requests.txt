@@ -1,0 +1,61 @@
+** Create Student
+
+mutation {
+    createStudent(
+        student : {
+            name:"RegiMuci"
+        }
+    ){
+        _id,
+        name
+    }
+}
+
+** Get Student
+
+query {
+    getStudent(
+        student : {
+            id:"5f9807730e81c74a619817b0"
+        }   
+    ){
+        _id,
+        name
+    }
+}
+
+** Get All Students
+
+query {
+    getStudents {
+        _id,
+        name
+    }
+}
+
+** Update Student
+
+mutation {
+    updateStudent(
+        student : {
+            id:"5f9807730e81c74a619817b0",
+            name:"Test"
+        }
+    ){
+        _id,
+        name
+    }
+}
+
+** Delete Student
+
+mutation {
+    deleteStudent(
+        student : {
+            id : "5f9807730e81c74a619817b0"
+        }
+    ){
+        _id,
+        name
+    }
+}
