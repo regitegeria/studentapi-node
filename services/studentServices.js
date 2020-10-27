@@ -1,5 +1,6 @@
 // Student 
 const Student = require('./../models/student.js');
+const { errorName } = require('./../constants/constants.js');
 
 // Services
 function getStudents(){
@@ -10,6 +11,9 @@ function getStudents(){
 function getStudent(student){
     const data = Student.findById(student.id).then(
         function(data){
+            if(data == null){
+                throw new Error(errorName.STUDENT_NOT_FOUND);
+            }
             return data;
         }
     ).catch(function(error){
@@ -21,6 +25,9 @@ function getStudent(student){
 function deleteStudent(student){
     const data = Student.findByIdAndDelete(student.id).then(
         function(data){
+            if(data == null){
+                throw new Error(errorName.STUDENT_NOT_FOUND);
+            }
             return data;
         }
     ).catch(function(error){
@@ -39,6 +46,9 @@ function createStudent(student){
 function updateStudent(student){
     const data = Student.findByIdAndUpdate(student.id,student).then(
         function(data){
+            if(data == null){
+                throw new Error(errorName.STUDENT_NOT_FOUND);
+            }
             return data;
         }
     ).catch(function(error){
@@ -48,8 +58,10 @@ function updateStudent(student){
 }
 
 // Exports
-module.exports.getStudents = getStudents
-module.exports.getStudent = getStudent;
-module.exports.deleteStudent = deleteStudent;
-module.exports.createStudent = createStudent;
-module.exports.updateStudent = updateStudent;
+module.exports = {
+    getStudents,
+    getStudent,
+    deleteStudent,
+    createStudent,
+    updateStudent
+}

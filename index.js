@@ -34,11 +34,21 @@ var root = {
     },
 };
 
+const getErrorCode = require('./constants/constants.js').getErrorCode;
 const express_graphql = require('express-graphql').graphqlHTTP;
+
 app.use('/graphql', express_graphql({
     schema: graphqlSchema,
     rootValue: root,
-    graphiql: true
+    graphiql: true,
+    customFormatErrorFn: (err) => {
+        const error = getErrorCode(err.message);
+        const jsonError = {
+            message : error.message,
+            statusCode : error.statusCode
+        }
+        return jsonError;
+    }
 }));
 
 // Staring Server on port 3000
