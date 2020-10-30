@@ -1,0 +1,9 @@
+** How to build
+
+docker build -t regitegeria/nodeapp .
+
+** How to run
+
+docker run -d -p 3000:3000 --name nodeapp --net="host" regitegeria/nodeapp
+
+* Note: MongoDB should be configured locally
